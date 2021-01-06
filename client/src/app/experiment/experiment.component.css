@@ -11,3 +11,24 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+.add-padding {
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+.squre {
+  border-radius: 3px;
+  color: #5b646b;
+  display: inline-block;
+  height: 15px;
+  margin-right: 5px;
+  width: 15px;
+}
+
+.author {
+  position: relative;
+  right: 108px;
+  top: 200px;
+  width: fit-content;
+  height: fit-content;
+}

@@ -1,0 +1,18 @@
+<div *ngIf="dataLoaded">
+  <ngx-charts-bar-vertical
+    [view]="graph.view"
+    [scheme]="graph.scheme"
+    [results]="graph.results"
+    [gradient]="graph.gradient"
+    [xAxis]="graph.xAxis"
+    [yAxis]="graph.yAxis"
+    [legend]="graph.legend"
+    [showXAxisLabel]="graph.showXAxisLabel"
+    [showYAxisLabel]="graph.showYAxisLabel"
+    [xAxisLabel]="graph.xAxisLabel"
+    [yAxisLabel]="graph.yAxisLabel"
+    [yScaleMax]="100"
+    (select)="onSelect($event)"
+  >
+  </ngx-charts-bar-vertical>
+</div>

@@ -17,15 +17,19 @@ import { TextsServiceService } from '../services/texts-service.service';
   ],
 })
 export class ExperimentComponent implements OnInit {
-  constructor(
-    public dialog: MatDialog,
-    private formBuilder: FormBuilder,
-    public textsServiceService: TextsServiceService
-  ) {}
+  analyzePressed: boolean;
   trainFormGroup: FormGroup;
   testFormGroup: FormGroup;
   trainLoaded: boolean;
   testLoaded: boolean;
+  constructor(
+    public dialog: MatDialog,
+    private formBuilder: FormBuilder,
+    public textsServiceService: TextsServiceService
+  ) {
+    this.testLoaded = false;
+  }
+
   ngOnInit(): void {
     this.trainLoaded = this.textsServiceService.trainLoaded;
     this.testLoaded = this.textsServiceService.testLoaded;
@@ -40,8 +44,42 @@ export class ExperimentComponent implements OnInit {
     }
 
     dialogRef.afterClosed().subscribe((result) => {
+      console.log(
+        'trainBooks',
+        JSON.stringify(this.textsServiceService.trainBooks)
+      );
+      console.log(
+        'testBooks',
+        JSON.stringify(this.textsServiceService.testBooks)
+      );
       this.trainLoaded = this.textsServiceService.trainLoaded;
       this.testLoaded = this.textsServiceService.testLoaded;
     });
+  }
+
+  anlalyzePressed() {
+    this.analyzePressed = true;
+  }
+  SelectDefaultTestBooks() {
+    this.textsServiceService.testBooks = [
+      { name: 'Numbers', level: 2, expandable: false },
+      { name: 'Deuteronomy', level: 2, expandable: false },
+      { name: 'Job', level: 2, expandable: false },
+      { name: 'Proverbs', level: 2, expandable: false },
+      { name: 'Ecclesiastes', level: 2, expandable: false },
+      { name: 'Song of Songs', level: 2, expandable: false },
+    ];
+    this.testLoaded = this.textsServiceService.testLoaded = true;
+  }
+  SelectDefaultTrainBooks() {
+    this.textsServiceService.trainBooks = [
+      { name: 'Genesis', level: 2, expandable: false },
+      { name: 'Exodus', level: 2, expandable: false },
+      { name: 'Leviticus', level: 2, expandable: false },
+      { name: 'Joshua', level: 2, expandable: false },
+      { name: 'Ezra', level: 2, expandable: false },
+      { name: 'Nehemiah', level: 2, expandable: false },
+    ];
+    this.trainLoaded = this.textsServiceService.trainLoaded = true;
   }
 }

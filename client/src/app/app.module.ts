@@ -21,6 +21,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
+import { ResultGraphComponent } from './result-graph/result-graph.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { MatChipsModule } from '@angular/material/chips';
     DashboardComponent,
     ExperimentComponent,
     SelectTextsDialogComponent,
+    ResultGraphComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +52,7 @@ import { MatChipsModule } from '@angular/material/chips';
     MatFormFieldModule,
     MatInputModule,
     MatChipsModule,
+    NgxChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

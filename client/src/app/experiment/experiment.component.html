@@ -1,10 +1,76 @@
-<mat-horizontal-stepper #stepper>
-  <mat-step>
-    <ng-template matStepLabel>Select books to train</ng-template>
-    <button mat-button (click)="openSelectTextsDialog('train')">
-      select your train books
-    </button>
-    <div *ngIf="trainLoaded" class="div-wrapper">
+<div>
+  <mat-horizontal-stepper #stepper>
+    <mat-step>
+      <div>
+        <ng-template matStepLabel>Select Books to Train</ng-template>
+        <button mat-raised-button (click)="openSelectTextsDialog('train')">
+          Select Your Train Books
+        </button>
+        &nbsp;
+        <button mat-raised-button (click)="SelectDefaultTrainBooks()">
+          Select Default Train Books
+        </button>
+      </div>
+      <br />
+      <div *ngIf="trainLoaded" class="div-wrapper">
+        <mat-chip-list
+          *ngFor="let book of textsServiceService.trainBooks"
+          aria-label="TrainSelection"
+        >
+          <mat-chip color="primary" selected>{{ book.name }}</mat-chip
+          >&nbsp;
+        </mat-chip-list>
+      </div>
+
+      <div>
+        <button mat-raised-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <div>
+        <ng-template matStepLabel>Select Books to Test</ng-template>
+        <button mat-raised-button (click)="openSelectTextsDialog('test')">
+          Select Your Test Books
+        </button>
+        &nbsp;
+        <button mat-raised-button (click)="SelectDefaultTestBooks()">
+          Select Default Test Books
+        </button>
+      </div>
+      <br />
+      <div *ngIf="testLoaded" class="div-wrapper">
+        <mat-chip-list
+          *ngFor="let book of textsServiceService.testBooks"
+          aria-label="TrainSelection"
+        >
+          <mat-chip color="primary" selected>{{ book.name }}</mat-chip
+          >&nbsp;
+        </mat-chip-list>
+      </div>
+      <div>
+        <button mat-raised-button matStepperPrevious>Back</button>
+        &nbsp;
+        <button mat-raised-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <div>
+        <button mat-raised-button matStepperPrevious>Back</button>
+        &nbsp;
+        <button mat-raised-button (click)="stepper.reset()">Reset</button>
+        &nbsp;
+        <button mat-raised-button color="primary" (click)="anlalyzePressed()">
+          Analyze
+        </button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+
+  <div *ngIf="analyzePressed" class="d-flex justify-content-center">
+    <div style="padding-left: 10px">
+      <br />
+      <span>Trained On:</span>
       <mat-chip-list
         *ngFor="let book of textsServiceService.trainBooks"
         aria-label="TrainSelection"
@@ -13,37 +79,22 @@
         >&nbsp;
       </mat-chip-list>
     </div>
-
     <div>
-      <button mat-button matStepperNext>Next</button>
+      <app-result-graph> </app-result-graph>
     </div>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Select books to test</ng-template>
-    <button mat-button (click)="openSelectTextsDialog('test')">
-      select your test books
-    </button>
-    <div *ngIf="testLoaded" class="div-wrapper">
-      <mat-chip-list
-        *ngFor="let book of textsServiceService.testBooks"
-        aria-label="TrainSelection"
-      >
-        <mat-chip color="primary" selected>{{ book.name }}</mat-chip
-        >&nbsp;
-      </mat-chip-list>
+    <div class="author">
+      <div>
+        <span style="font-size: 0.85em"
+          ><span class="squre" style="background-color: '#90ee90'"></span
+          ><span style="display: inline"> Same Author </span></span
+        >
+      </div>
+      <div>
+        <span style="font-size: 0.85em"
+          ><span class="squre" style="background-color: rgb(178, 34, 34)"></span
+          ><span style="display: inline"> Different Author </span></span
+        >
+      </div>
     </div>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
-    </div>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    You are now done.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-      <button mat-raised-button color="primary">Analyze</button>
-    </div>
-  </mat-step>
-</mat-horizontal-stepper>
+  </div>
+</div>

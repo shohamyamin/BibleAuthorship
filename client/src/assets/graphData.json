@@ -1,0 +1,40 @@
+{
+
+    "scheme" :   {"domain": ["#B22222","#90EE90"] },
+    "results": [
+        {
+            "name": "Numbers",
+            "value": 80
+          },
+          {
+            "name": "Deuteronomy",
+            "value": 60
+          },
+          {
+            "name": "Job",
+            "value": 40
+          },
+          {
+            "name": "Proverbs",
+            "value": 20
+          },
+          {
+            "name": "Ecclesiastes",
+            "value": 50
+          },
+          {
+            "name": "Song of Songs",
+            "value": 100
+          }
+    ],
+    "view": [700, 400],
+    "gradient": true,
+    "xAxis": true,
+    "yAxis": true,
+    "legend": true,
+    "showXAxisLabel": true,
+  
+    "showYAxisLabel": true,
+    "xAxisLabel": "Book Name",
+    "yAxisLabel": "Confidence %"
+}
