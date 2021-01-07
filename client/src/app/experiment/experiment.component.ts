@@ -57,10 +57,10 @@ export class ExperimentComponent implements OnInit {
     });
   }
 
-  anlalyzePressed() {
+  analyzeBegin() {
     this.analyzePressed = true;
   }
-  SelectDefaultTestBooks() {
+  selectDefaultTestBooks() {
     this.textsServiceService.testBooks = [
       { name: 'Numbers', level: 2, expandable: false },
       { name: 'Deuteronomy', level: 2, expandable: false },
