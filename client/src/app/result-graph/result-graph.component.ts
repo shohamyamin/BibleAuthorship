@@ -24,8 +24,10 @@ export class ResultGraphComponent implements OnInit {
       this.graph = data;
       this.dataLoaded = true;
     });
+    // this.dataService.getBible().subscribe((data) => {
+    //   console.log('data', JSON.stringify(data));
+    // });
   }
-
   onSelect(event) {
     console.log(event);
   }
