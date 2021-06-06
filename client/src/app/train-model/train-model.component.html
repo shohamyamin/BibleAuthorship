@@ -1,0 +1,99 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div>
+        <mat-card class="class-1">
+          <mat-card-header>
+            <mat-card-title>Class 1</mat-card-title>
+          </mat-card-header>
+          <mat-divider></mat-divider><br />
+          <mat-card-content>
+            <span>Add text samples</span>
+            <button
+              mat-button
+              color="primary"
+              (click)="openSelectTextsDialog('train')"
+            >
+              Select Texts
+            </button>
+          </mat-card-content>
+          <mat-card-actions> </mat-card-actions>
+        </mat-card>
+      </div>
+      <br />
+      <div>
+        <mat-card class="class-1">
+          <mat-card-header>
+            <mat-card-title>Class 2</mat-card-title>
+          </mat-card-header>
+          <mat-divider></mat-divider><br />
+          <mat-card-content>
+            <span>Add text samples</span>
+            <button
+              mat-button
+              color="primary"
+              (click)="openSelectTextsDialog('train')"
+            >
+              Select Texts
+            </button>
+          </mat-card-content>
+          <mat-card-actions> </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div>
+        <mat-card class="class-1">
+          <mat-card-header>
+            <mat-card-title
+              >Training
+              <button mat-button color="primary">Train Model</button>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-divider></mat-divider><br />
+          <mat-card-content>
+            <div>
+              <mat-form-field class="form-padd">
+                <mat-label>Model Name</mat-label>
+                <input matInput type="text" value="Model 1" />
+              </mat-form-field>
+              <mat-form-field class="form-padd">
+                <mat-label>Epochs</mat-label>
+                <input matInput type="number" value="50" />
+              </mat-form-field>
+              <mat-form-field class="form-padd">
+                <mat-label>Batch Size</mat-label>
+                <input matInput type="number" value="16" />
+              </mat-form-field>
+              <mat-form-field class="form-padd">
+                <mat-label>Learning Rate</mat-label>
+                <input matInput type="number" value="0.0001" />
+              </mat-form-field>
+              <mat-form-field class="form-padd">
+                <mat-label>Training Sequence Length</mat-label>
+                <input matInput type="number" value="140" />
+              </mat-form-field>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <mat-card class="class-1">
+        <mat-card-header>
+          <mat-card-title
+            >Preview
+            <button mat-button disabled>
+              <mat-icon>cloud_download</mat-icon>&nbsp;Export Model
+            </button>
+          </mat-card-title> </mat-card-header
+        ><mat-divider></mat-divider><br />
+        <mat-card-content>
+          <span>
+            You must train a model on the left before you can preview it here
+          </span>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

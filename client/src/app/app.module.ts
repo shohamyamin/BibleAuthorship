@@ -23,7 +23,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
 import { ResultGraphComponent } from './result-graph/result-graph.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-
+import { TrainModelComponent } from './train-model/train-model.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatRadioModule } from '@angular/material/radio';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +35,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     ExperimentComponent,
     SelectTextsDialogComponent,
     ResultGraphComponent,
+    TrainModelComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +57,9 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     MatInputModule,
     MatChipsModule,
     NgxChartsModule,
+    MatCardModule,
+    MatDividerModule,
+    MatRadioModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

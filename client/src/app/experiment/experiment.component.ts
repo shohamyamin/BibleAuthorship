@@ -39,9 +39,8 @@ export class ExperimentComponent implements OnInit {
       minWidth: '400px',
       minHeight: '300px',
     });
-    if (trainOrTest === 'train') {
-      dialogRef.componentInstance.mode = trainOrTest;
-    }
+
+    dialogRef.componentInstance.mode = trainOrTest;
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(

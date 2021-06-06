@@ -5,10 +5,12 @@ import { HomeComponent } from './home/home.component';
 import { MatButtonModule } from '@angular/material/button';
 import { ExperimentComponent } from './experiment/experiment.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { TrainModelComponent } from './train-model/train-model.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'experiment', component: ExperimentComponent },
+  { path: 'trainModal', component: TrainModelComponent },
 ];
 
 @NgModule({

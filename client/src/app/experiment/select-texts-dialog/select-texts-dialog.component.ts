@@ -9,7 +9,7 @@ import {
 import { BehaviorSubject } from 'rxjs';
 import { Book, BookFlatNode } from 'src/app/models/Book';
 import { IBook } from 'src/app/models/IBook';
-import { TextsServiceService } from 'src/app/services/texts-service.service';
+import { TextsServiceService as TextsService } from 'src/app/services/texts-service.service';
 
 const TREE_DATA = {
   Bible: {
@@ -145,14 +145,16 @@ export class SelectTextsDialogComponent {
   treeFlattener: MatTreeFlattener<Book, BookFlatNode>;
 
   dataSource: MatTreeFlatDataSource<Book, BookFlatNode>;
+  selectedModel: any;
 
   /** The selection for checklist */
   checklistSelection = new SelectionModel<BookFlatNode>(true /* multiple */);
   mode: string;
+  pretrainModels: string[];
 
   constructor(
     private database: ChecklistDatabase,
-    private textsServiceService: TextsServiceService
+    private textsService: TextsService
   ) {
     this.treeFlattener = new MatTreeFlattener(
       this.transformer,
@@ -174,6 +176,15 @@ export class SelectTextsDialogComponent {
     });
   }
 
+  ngOnInit() {
+    if (this.mode == 'preTrain') {
+      this.textsService.getPreTrainModels().subscribe((res) => {
+        console.log('res', res);
+
+        this.pretrainModels = res.models;
+      });
+    }
+  }
   getLevel = (node: BookFlatNode) => node.level;
 
   isExpandable = (node: BookFlatNode) => node.expandable;
@@ -292,11 +303,11 @@ export class SelectTextsDialogComponent {
   }
   updateBooks() {
     if (this.mode === 'train') {
-      this.textsServiceService.trainBooks = this.checklistSelection.selected;
-      this.textsServiceService.trainLoaded = true;
+      this.textsService.trainBooks = this.checklistSelection.selected;
+      this.textsService.trainLoaded = true;
     } else {
-      this.textsServiceService.testBooks = this.checklistSelection.selected;
-      this.textsServiceService.testLoaded = true;
+      this.textsService.testBooks = this.checklistSelection.selected;
+      this.textsService.testLoaded = true;
     }
   }
 }

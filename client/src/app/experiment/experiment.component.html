@@ -2,14 +2,14 @@
   <mat-horizontal-stepper #stepper>
     <mat-step>
       <div>
-        <ng-template matStepLabel>Select Books to Train</ng-template>
-        <button mat-raised-button (click)="openSelectTextsDialog('train')">
-          Select Your Train Books
+        <ng-template matStepLabel>Select Pretrained Model</ng-template>
+        <button mat-raised-button (click)="openSelectTextsDialog('preTrain')">
+          Select Pretrained Model
         </button>
         &nbsp;
-        <button mat-raised-button (click)="SelectDefaultTrainBooks()">
+        <!-- <button mat-raised-button (click)="SelectDefaultTrainBooks()">
           Select Default Train Books
-        </button>
+        </button> -->
       </div>
       <br />
       <div *ngIf="trainLoaded" class="div-wrapper">

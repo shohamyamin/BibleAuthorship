@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BookFlatNode } from '../models/Book';
 
@@ -10,5 +11,9 @@ export class TextsServiceService {
   trainBooks: BookFlatNode[];
   testBooks: BookFlatNode[];
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
+
+  getPreTrainModels() {
+    return this.http.get<{ models: string[] }>('http://localhost:5000/models');
+  }
 }
