@@ -4,7 +4,13 @@
       <div>
         <mat-card class="class-1">
           <mat-card-header>
-            <mat-card-title>Class 1</mat-card-title>
+            <mat-card-title
+              ><mat-form-field class="example-form-field">
+                <input
+                  matInput
+                  type="text"
+                  [(ngModel)]="trainSettings.classLable1" /></mat-form-field
+            ></mat-card-title>
           </mat-card-header>
           <mat-divider></mat-divider><br />
           <mat-card-content>
@@ -24,7 +30,13 @@
       <div>
         <mat-card class="class-1">
           <mat-card-header>
-            <mat-card-title>Class 2</mat-card-title>
+            <mat-card-title
+              ><mat-form-field class="example-form-field">
+                <input
+                  matInput
+                  type="text"
+                  [(ngModel)]="trainSettings.classLable2" /></mat-form-field
+            ></mat-card-title>
           </mat-card-header>
           <mat-divider></mat-divider><br />
           <mat-card-content>
