@@ -16,6 +16,19 @@
               Select Pretrained Model
             </button>
             &nbsp;
+            <span
+              *ngIf="
+                textsServiceService.selectedModel &&
+                textsServiceService.selectedModel != ''
+              "
+            >
+              <mat-chip-list class="div-wrapper">
+                <mat-chip color="primary" selected
+                  >Selected Model:
+                  {{ textsServiceService.selectedModel }}</mat-chip
+                >&nbsp;
+              </mat-chip-list>
+            </span>
             <!-- <button mat-raised-button (click)="SelectDefaultTrainBooks()">
           Select Default Train Books
         </button> -->
@@ -30,6 +43,7 @@
               >&nbsp;
             </mat-chip-list>
           </div>
+
           <div></div>
           <div>
             <button mat-raised-button matStepperNext>Next</button>
