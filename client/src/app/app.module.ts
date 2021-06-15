@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -16,7 +16,6 @@ import { MatListModule } from '@angular/material/list';
 import { ExperimentComponent } from './experiment/experiment.component';
 import { SelectTextsDialogComponent } from './experiment/select-texts-dialog/select-texts-dialog.component';
 import { MatTreeModule } from '@angular/material/tree';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatInputModule } from '@angular/material/input';
@@ -27,8 +26,9 @@ import { TrainModelComponent } from './train-model/train-model.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatRadioModule } from '@angular/material/radio';
-
 import { NgHttpLoaderModule } from 'ng-http-loader';
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +44,6 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
@@ -52,7 +51,6 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
     MatSidenavModule,
     MatListModule,
     MatTreeModule,
-    MatFormFieldModule,
     MatCheckboxModule,
     MatStepperModule,
     ReactiveFormsModule,
@@ -63,6 +61,8 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
     MatCardModule,
     MatDividerModule,
     MatRadioModule,
+
+    ToastrModule.forRoot(),
     NgHttpLoaderModule.forRoot(),
   ],
   providers: [],

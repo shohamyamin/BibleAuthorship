@@ -1,60 +1,75 @@
 <div>
   <div>
     <mat-horizontal-stepper #stepper>
-      <mat-step>
-        <div>
-          <ng-template matStepLabel>Select Pretrained Model</ng-template>
-          <button mat-raised-button (click)="openSelectTextsDialog('preTrain')">
-            Select Pretrained Model
-          </button>
-          &nbsp;
-          <!-- <button mat-raised-button (click)="SelectDefaultTrainBooks()">
+      <mat-step
+        [stepControl]="firstFormGroup"
+        errorMessage="Model is required."
+      >
+        <form [formGroup]="firstFormGroup">
+          <input type="hidden" formControlName="firstCtrl" />
+          <div>
+            <ng-template matStepLabel>Select Pretrained Model</ng-template>
+            <button
+              mat-raised-button
+              (click)="openSelectTextsDialog('preTrain')"
+            >
+              Select Pretrained Model
+            </button>
+            &nbsp;
+            <!-- <button mat-raised-button (click)="SelectDefaultTrainBooks()">
           Select Default Train Books
         </button> -->
-        </div>
-        <br />
-        <div *ngIf="trainLoaded" class="div-wrapper">
-          <mat-chip-list
-            *ngFor="let book of textsServiceService.trainBooks"
-            aria-label="TrainSelection"
-          >
-            <mat-chip color="primary" selected>{{ book.name }}</mat-chip
-            >&nbsp;
-          </mat-chip-list>
-        </div>
-
-        <div>
-          <button mat-raised-button matStepperNext>Next</button>
-        </div>
+          </div>
+          <br />
+          <div *ngIf="trainLoaded" class="div-wrapper">
+            <mat-chip-list
+              *ngFor="let book of textsServiceService.trainBooks"
+              aria-label="TrainSelection"
+            >
+              <mat-chip color="primary" selected>{{ book.name }}</mat-chip
+              >&nbsp;
+            </mat-chip-list>
+          </div>
+          <div></div>
+          <div>
+            <button mat-raised-button matStepperNext>Next</button>
+          </div>
+        </form>
       </mat-step>
-      <mat-step>
-        <div>
-          <ng-template matStepLabel>Select Books to Test</ng-template>
-          <button mat-raised-button (click)="openSelectTextsDialog('test')">
-            Select Your Test Books
-          </button>
-          &nbsp;
-          <button mat-raised-button (click)="selectDefaultTestBooks()">
-            Select Default Test Books
-          </button>
-        </div>
-        <br />
-        <div *ngIf="testLoaded" class="div-wrapper">
-          <mat-chip-list
-            *ngFor="let book of textsServiceService.testBooks"
-            aria-label="TrainSelection"
-          >
-            <div *ngIf="book.level == 2">
-              <mat-chip color="primary" selected>{{ book.name }}</mat-chip>
-            </div>
+      <mat-step
+        [stepControl]="secondFormGroup"
+        errorMessage="tests books are required."
+      >
+        <form [formGroup]="secondFormGroup">
+          <input type="hidden" formControlName="secondCtrl" />
+          <div>
+            <ng-template matStepLabel>Select Books to Test</ng-template>
+            <button mat-raised-button (click)="openSelectTextsDialog('test')">
+              Select Your Test Books
+            </button>
             &nbsp;
-          </mat-chip-list>
-        </div>
-        <div>
-          <button mat-raised-button matStepperPrevious>Back</button>
-          &nbsp;
-          <button mat-raised-button matStepperNext>Next</button>
-        </div>
+            <button mat-raised-button (click)="selectDefaultTestBooks()">
+              Select Default Test Books
+            </button>
+          </div>
+          <br />
+          <div *ngIf="testLoaded" class="div-wrapper">
+            <mat-chip-list
+              *ngFor="let book of textsServiceService.testBooks"
+              aria-label="TrainSelection"
+            >
+              <div *ngIf="book.level == 2">
+                <mat-chip color="primary" selected>{{ book.name }}</mat-chip>
+              </div>
+              &nbsp;
+            </mat-chip-list>
+          </div>
+          <div>
+            <button mat-raised-button matStepperPrevious>Back</button>
+            &nbsp;
+            <button mat-raised-button matStepperNext>Next</button>
+          </div>
+        </form>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Done</ng-template>
@@ -63,7 +78,12 @@
           &nbsp;
           <button mat-raised-button (click)="stepper.reset()">Reset</button>
           &nbsp;
-          <button mat-raised-button color="primary" (click)="analyzeBegin()">
+          <button
+            [disabled]="!firstFormGroup.valid || !secondFormGroup.valid"
+            mat-raised-button
+            color="primary"
+            (click)="analyzeBegin()"
+          >
             Analyze
           </button>
         </div>

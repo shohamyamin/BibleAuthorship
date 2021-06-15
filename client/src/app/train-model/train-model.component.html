@@ -1,154 +1,199 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <div>
-        <mat-card class="class-1">
-          <mat-card-header>
-            <mat-card-title
-              ><mat-form-field class="example-form-field">
-                <input
-                  matInput
-                  type="text"
-                  [(ngModel)]="trainSettings.classLable1" /></mat-form-field
-            ></mat-card-title>
-          </mat-card-header>
-          <mat-divider></mat-divider><br />
-          <mat-card-content>
-            <span>Add text samples</span>
-            <button
-              mat-button
-              color="primary"
-              (click)="openSelectTextsDialog('train', 1)"
-            >
-              Select Texts
-            </button>
-            <div class="div-wrapper">
-              <span>{{ dataService.classLable1 }}</span>
-              <mat-chip-list
-                *ngFor="let book of textsService.clss1TrainBooks"
-                aria-label="TrainSelection"
+  <form [formGroup]="firstFormGroup" (ngSubmit)="trainModel()">
+    <div class="row">
+      <div class="col-md-4">
+        <div>
+          <mat-card class="class-1">
+            <mat-card-header>
+              <mat-card-title
+                ><mat-form-field class="example-form-field">
+                  <input matInput type="text" formControlName="classLable1" />
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      firstFormGroup.get('classLable1').hasError('required')
+                    "
+                  >
+                    This field is required.
+                  </small>
+                </mat-form-field>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-divider></mat-divider><br />
+            <mat-card-content>
+              <span>Add text samples</span>
+              <button
+                mat-button
+                color="primary"
+                type="button"
+                (click)="openSelectTextsDialog('train', 1)"
               >
-                <mat-chip color="primary" selected>{{ book.name }}</mat-chip
-                >&nbsp;
-              </mat-chip-list>
-            </div>
-          </mat-card-content>
-          <mat-card-actions> </mat-card-actions>
-        </mat-card>
-      </div>
-      <br />
-      <div>
-        <mat-card class="class-1">
-          <mat-card-header>
-            <mat-card-title
-              ><mat-form-field class="example-form-field">
-                <input
-                  matInput
-                  type="text"
-                  [(ngModel)]="trainSettings.classLable2" /></mat-form-field
-            ></mat-card-title>
-          </mat-card-header>
-          <mat-divider></mat-divider><br />
-          <mat-card-content>
-            <span>Add text samples</span>
-            <button
-              mat-button
-              color="primary"
-              (click)="openSelectTextsDialog('train', 2)"
-            >
-              Select Texts
-            </button>
-            <div class="div-wrapper">
-              <span>{{ dataService.classLable2 }}</span>
-              <mat-chip-list
-                *ngFor="let book of textsService.clss2TrainBooks"
-                aria-label="TrainSelection"
-              >
-                <mat-chip color="Warn">{{ book.name }}</mat-chip>
-
-                &nbsp;
-              </mat-chip-list>
-            </div>
-          </mat-card-content>
-          <mat-card-actions> </mat-card-actions>
-        </mat-card>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div>
-        <mat-card class="class-1">
-          <mat-card-header>
-            <mat-card-title
-              >Training
-              <button mat-button (click)="trainModel()" color="primary">
-                Train Model
+                Select Texts
               </button>
-            </mat-card-title>
-          </mat-card-header>
-          <mat-divider></mat-divider><br />
+              <div
+                class="text-danger"
+                *ngIf="
+                  !textsService.clss1TrainBooks ||
+                  textsService.clss1TrainBooks.length == 0
+                "
+              >
+                Select some books.
+              </div>
+              <div class="div-wrapper">
+                <span>{{ dataService.classLable1 }}</span>
+                <mat-chip-list
+                  *ngFor="let book of textsService.clss1TrainBooks"
+                  aria-label="TrainSelection"
+                >
+                  <mat-chip color="primary" selected>{{ book.name }}</mat-chip
+                  >&nbsp;
+                </mat-chip-list>
+              </div>
+            </mat-card-content>
+            <mat-card-actions> </mat-card-actions>
+          </mat-card>
+        </div>
+        <br />
+        <div>
+          <mat-card class="class-1">
+            <mat-card-header>
+              <mat-card-title
+                ><mat-form-field class="example-form-field">
+                  <input matInput type="text" formControlName="classLable2" />
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      firstFormGroup.get('classLable2').hasError('required')
+                    "
+                  >
+                    This field is required.
+                  </small>
+                </mat-form-field>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-divider></mat-divider><br />
+            <mat-card-content>
+              <span>Add text samples</span>
+              <button
+                mat-button
+                color="primary"
+                type="button"
+                (click)="openSelectTextsDialog('train', 2)"
+              >
+                Select Texts
+              </button>
+              <div
+                class="text-danger"
+                *ngIf="
+                  !textsService.clss2TrainBooks ||
+                  textsService.clss2TrainBooks.length == 0
+                "
+              >
+                Select some books.
+              </div>
+              <div class="div-wrapper">
+                <span>{{ dataService.classLable2 }}</span>
+
+                <mat-chip-list
+                  *ngFor="let book of textsService.clss2TrainBooks"
+                  aria-label="TrainSelection"
+                >
+                  <mat-chip color="Warn">{{ book.name }}</mat-chip>
+
+                  &nbsp;
+                </mat-chip-list>
+              </div>
+            </mat-card-content>
+            <mat-card-actions> </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div>
+          <mat-card class="class-1">
+            <mat-card-header>
+              <mat-card-title
+                >Training
+                <button
+                  mat-button
+                  type="submit"
+                  [disabled]="
+                    !firstFormGroup.valid ||
+                    !this.textsService.clss1TrainBooks ||
+                    !this.textsService.clss2TrainBooks ||
+                    this.textsService.clss1TrainBooks.length == 0 ||
+                    this.textsService.clss2TrainBooks.length == 0
+                  "
+                  color="primary"
+                >
+                  Train Model
+                </button>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-divider></mat-divider><br />
+            <mat-card-content>
+              <div>
+                <mat-form-field class="form-padd">
+                  <mat-label>Model Name</mat-label>
+                  <input matInput formControlName="modelName" type="text" />
+                </mat-form-field>
+                <mat-form-field class="form-padd">
+                  <mat-label>Epochs</mat-label>
+                  <input
+                    matInput
+                    formControlName="modelEpochs"
+                    type="number"
+                    min="5"
+                  />
+                </mat-form-field>
+                <mat-form-field class="form-padd">
+                  <mat-label>Batch Size</mat-label>
+                  <input
+                    matInput
+                    formControlName="modelBatchSize"
+                    type="number"
+                    min="8"
+                  />
+                </mat-form-field>
+                <mat-form-field class="form-padd">
+                  <mat-label>Learning Rate</mat-label>
+                  <input
+                    matInput
+                    formControlName="modelLearningRate"
+                    type="number"
+                    min="0.0001"
+                  />
+                </mat-form-field>
+                <mat-form-field class="form-padd">
+                  <mat-label>Training Sequence Length</mat-label>
+                  <input
+                    matInput
+                    formControlName="modelTrainingSequenceLen"
+                    type="number"
+                    min="40"
+                  />
+                </mat-form-field>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <mat-card class="class-1">
+          <mat-card-header>
+            <mat-card-title>Usage </mat-card-title> </mat-card-header
+          ><mat-divider></mat-divider><br />
           <mat-card-content>
-            <div>
-              <mat-form-field class="form-padd">
-                <mat-label>Model Name</mat-label>
-                <input
-                  matInput
-                  [(ngModel)]="trainSettings.modelName"
-                  type="text"
-                />
-              </mat-form-field>
-              <mat-form-field class="form-padd">
-                <mat-label>Epochs</mat-label>
-                <input
-                  matInput
-                  [(ngModel)]="trainSettings.modelEpochs"
-                  type="number"
-                />
-              </mat-form-field>
-              <mat-form-field class="form-padd">
-                <mat-label>Batch Size</mat-label>
-                <input
-                  matInput
-                  [(ngModel)]="trainSettings.modelBatchSize"
-                  type="number"
-                />
-              </mat-form-field>
-              <mat-form-field class="form-padd">
-                <mat-label>Learning Rate</mat-label>
-                <input
-                  matInput
-                  [(ngModel)]="trainSettings.modelLearningRate"
-                  type="number"
-                />
-              </mat-form-field>
-              <mat-form-field class="form-padd">
-                <mat-label>Training Sequence Length</mat-label>
-                <input
-                  matInput
-                  [(ngModel)]="trainSettings.modelTrainingSequenceLen"
-                  type="number"
-                />
-              </mat-form-field>
-            </div>
+            <span> 1. Selects text from the Bible for the first Class </span>
+            <br />
+
+            <span> 2. Selects text from the Bible for the seconed Class </span
+            ><br />
+            <span> 3. Change the Default Setting if needed </span><br />
+            <span> 4. Train the Model </span>
           </mat-card-content>
         </mat-card>
       </div>
     </div>
-    <div class="col-md-4">
-      <mat-card class="class-1">
-        <mat-card-header>
-          <mat-card-title
-            >Preview
-            <button mat-button disabled>
-              <mat-icon>cloud_download</mat-icon>&nbsp;Export Model
-            </button>
-          </mat-card-title> </mat-card-header
-        ><mat-divider></mat-divider><br />
-        <mat-card-content>
-          <span>
-            You must train a model on the left before you can preview it here
-          </span>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  </div>
+  </form>
 </div>
