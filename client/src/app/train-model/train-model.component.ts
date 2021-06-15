@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SelectTextsDialogComponent } from '../experiment/select-texts-dialog/select-texts-dialog.component';
 import { IModelSettings } from '../models/IModelSettings';
+import { DataService } from '../services/data.service';
 import { TextsService } from '../services/texts.service';
 import { TrainService } from '../services/train.service';
 
@@ -14,7 +15,8 @@ export class TrainModelComponent implements OnInit {
   constructor(
     private textsService: TextsService,
     public dialog: MatDialog,
-    private trainService: TrainService
+    private trainService: TrainService,
+    public dataService: DataService
   ) {}
   trainSettings: IModelSettings;
 

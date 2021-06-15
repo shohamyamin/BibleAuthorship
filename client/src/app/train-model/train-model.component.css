@@ -4,3 +4,9 @@
 .form-padd {
   padding: 5px;
 }
+.div-wrapper {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}

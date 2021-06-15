@@ -22,6 +22,16 @@
             >
               Select Texts
             </button>
+            <div class="div-wrapper">
+              <span>{{ dataService.classLable1 }}</span>
+              <mat-chip-list
+                *ngFor="let book of textsService.clss1TrainBooks"
+                aria-label="TrainSelection"
+              >
+                <mat-chip color="primary" selected>{{ book.name }}</mat-chip
+                >&nbsp;
+              </mat-chip-list>
+            </div>
           </mat-card-content>
           <mat-card-actions> </mat-card-actions>
         </mat-card>
@@ -48,6 +58,17 @@
             >
               Select Texts
             </button>
+            <div class="div-wrapper">
+              <span>{{ dataService.classLable2 }}</span>
+              <mat-chip-list
+                *ngFor="let book of textsService.clss2TrainBooks"
+                aria-label="TrainSelection"
+              >
+                <mat-chip color="Warn">{{ book.name }}</mat-chip>
+
+                &nbsp;
+              </mat-chip-list>
+            </div>
           </mat-card-content>
           <mat-card-actions> </mat-card-actions>
         </mat-card>
