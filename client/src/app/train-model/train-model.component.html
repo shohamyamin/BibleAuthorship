@@ -12,7 +12,7 @@
             <button
               mat-button
               color="primary"
-              (click)="openSelectTextsDialog('train')"
+              (click)="openSelectTextsDialog('train', 1)"
             >
               Select Texts
             </button>
@@ -32,7 +32,7 @@
             <button
               mat-button
               color="primary"
-              (click)="openSelectTextsDialog('train')"
+              (click)="openSelectTextsDialog('train', 2)"
             >
               Select Texts
             </button>
@@ -47,7 +47,9 @@
           <mat-card-header>
             <mat-card-title
               >Training
-              <button mat-button color="primary">Train Model</button>
+              <button mat-button (click)="trainModel()" color="primary">
+                Train Model
+              </button>
             </mat-card-title>
           </mat-card-header>
           <mat-divider></mat-divider><br />
@@ -55,23 +57,43 @@
             <div>
               <mat-form-field class="form-padd">
                 <mat-label>Model Name</mat-label>
-                <input matInput type="text" value="Model 1" />
+                <input
+                  matInput
+                  [(ngModel)]="trainSettings.modelName"
+                  type="text"
+                />
               </mat-form-field>
               <mat-form-field class="form-padd">
                 <mat-label>Epochs</mat-label>
-                <input matInput type="number" value="50" />
+                <input
+                  matInput
+                  [(ngModel)]="trainSettings.modelEpochs"
+                  type="number"
+                />
               </mat-form-field>
               <mat-form-field class="form-padd">
                 <mat-label>Batch Size</mat-label>
-                <input matInput type="number" value="16" />
+                <input
+                  matInput
+                  [(ngModel)]="trainSettings.modelBatchSize"
+                  type="number"
+                />
               </mat-form-field>
               <mat-form-field class="form-padd">
                 <mat-label>Learning Rate</mat-label>
-                <input matInput type="number" value="0.0001" />
+                <input
+                  matInput
+                  [(ngModel)]="trainSettings.modelLearningRate"
+                  type="number"
+                />
               </mat-form-field>
               <mat-form-field class="form-padd">
                 <mat-label>Training Sequence Length</mat-label>
-                <input matInput type="number" value="140" />
+                <input
+                  matInput
+                  [(ngModel)]="trainSettings.modelTrainingSequenceLen"
+                  type="number"
+                />
               </mat-form-field>
             </div>
           </mat-card-content>

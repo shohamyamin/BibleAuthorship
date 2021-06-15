@@ -9,7 +9,7 @@ import {
 import { BehaviorSubject } from 'rxjs';
 import { Book, BookFlatNode } from 'src/app/models/Book';
 import { IBook } from 'src/app/models/IBook';
-import { TextsServiceService as TextsService } from 'src/app/services/texts-service.service';
+import { TextsService as TextsService } from 'src/app/services/texts.service';
 
 const TREE_DATA = {
   Bible: {
@@ -17,27 +17,27 @@ const TREE_DATA = {
       Genesis: null,
       Exodus: null,
       Leviticus: null,
-      Numbers: null,
-      Deuteronomy: null,
+      Numeri: null,
+      Deuteronomium: null,
     },
     Prophets: {
       Joshua: null,
       Judges: null,
-      'Samuel I': null,
-      'Samuel II': null,
-      'Kings I': null,
-      'Kings II': null,
+      Samuel_I: null,
+      Samuel_II: null,
+      Reges_I: null,
+      Reges_II: null,
       Isaiah: null,
-      Jeremiah: null,
-      Ezekiel: null,
+      Jeremia: null,
+      Ezechiel: null,
       Hosea: null,
       Joel: null,
       Amos: null,
       Obadiah: null,
       Jonah: null,
-      Micah: null,
+      Micha: null,
       Nahum: null,
-      Habakkuk: null,
+      Habakuk: null,
       Zephaniah: null,
       Haggai: null,
       Zechariah: null,
@@ -47,16 +47,16 @@ const TREE_DATA = {
       Psalms: null,
       Proverbs: null,
       Job: null,
-      'Song of Songs': null,
+      Canticum: null,
       Ruth: null,
       Lamentations: null,
       Ecclesiastes: null,
       Esther: null,
       Daniel: null,
-      Ezra: null,
-      Nehemiah: null,
-      'Chronicles I': null,
-      'Chronicles II': null,
+      Esra: null,
+      Nehemia: null,
+      Chronica_I: null,
+      Chronica_II: null,
     },
   },
 };
@@ -151,7 +151,7 @@ export class SelectTextsDialogComponent {
   checklistSelection = new SelectionModel<BookFlatNode>(true /* multiple */);
   mode: string;
   pretrainModels: string[];
-
+  classNum: number;
   constructor(
     private database: ChecklistDatabase,
     private textsService: TextsService
@@ -302,9 +302,25 @@ export class SelectTextsDialogComponent {
     return null;
   }
   updateBooks() {
+    console.log('myMode', this.mode);
+
     if (this.mode === 'train') {
-      this.textsService.trainBooks = this.checklistSelection.selected;
-      this.textsService.trainLoaded = true;
+      if (this.classNum == 1) {
+        this.textsService.clss1TrainBooks =
+          this.checklistSelection.selected.filter((book) => book.level == 2);
+      } else if (this.classNum == 2) {
+        this.textsService.clss2TrainBooks =
+          this.checklistSelection.selected.filter((book) => book.level == 2);
+      }
+
+      if (
+        this.textsService.clss1TrainBooks?.length > 0 &&
+        this.textsService.clss2TrainBooks?.length > 0
+      ) {
+        this.textsService.trainLoaded = true;
+      }
+    } else if (this.mode === 'preTrain') {
+      this.textsService.selectedModel = this.selectedModel;
     } else {
       this.textsService.testBooks = this.checklistSelection.selected;
       this.textsService.testLoaded = true;

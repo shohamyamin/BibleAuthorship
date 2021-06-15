@@ -1,13 +1,13 @@
 import { IGraphData } from './IGraphData';
 
 export interface IGraph {
-  scheme: string[];
+  scheme: { domain: string[] };
   results: IGraphData[];
   view: any[];
   gradient: boolean;
   xAxis: boolean;
   yAxis: boolean;
-  legend: true;
+  legend: boolean;
   showXAxisLabel: boolean;
 
   showYAxisLabel: boolean;

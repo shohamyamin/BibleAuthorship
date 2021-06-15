@@ -1,98 +1,124 @@
 <div>
-  <mat-horizontal-stepper #stepper>
-    <mat-step>
-      <div>
-        <ng-template matStepLabel>Select Pretrained Model</ng-template>
-        <button mat-raised-button (click)="openSelectTextsDialog('preTrain')">
-          Select Pretrained Model
-        </button>
-        &nbsp;
-        <!-- <button mat-raised-button (click)="SelectDefaultTrainBooks()">
+  <div>
+    <mat-horizontal-stepper #stepper>
+      <mat-step>
+        <div>
+          <ng-template matStepLabel>Select Pretrained Model</ng-template>
+          <button mat-raised-button (click)="openSelectTextsDialog('preTrain')">
+            Select Pretrained Model
+          </button>
+          &nbsp;
+          <!-- <button mat-raised-button (click)="SelectDefaultTrainBooks()">
           Select Default Train Books
         </button> -->
-      </div>
-      <br />
-      <div *ngIf="trainLoaded" class="div-wrapper">
-        <mat-chip-list
-          *ngFor="let book of textsServiceService.trainBooks"
-          aria-label="TrainSelection"
-        >
-          <mat-chip color="primary" selected>{{ book.name }}</mat-chip
-          >&nbsp;
-        </mat-chip-list>
-      </div>
+        </div>
+        <br />
+        <div *ngIf="trainLoaded" class="div-wrapper">
+          <mat-chip-list
+            *ngFor="let book of textsServiceService.trainBooks"
+            aria-label="TrainSelection"
+          >
+            <mat-chip color="primary" selected>{{ book.name }}</mat-chip
+            >&nbsp;
+          </mat-chip-list>
+        </div>
 
-      <div>
-        <button mat-raised-button matStepperNext>Next</button>
-      </div>
-    </mat-step>
-    <mat-step>
-      <div>
-        <ng-template matStepLabel>Select Books to Test</ng-template>
-        <button mat-raised-button (click)="openSelectTextsDialog('test')">
-          Select Your Test Books
-        </button>
-        &nbsp;
-        <button mat-raised-button (click)="selectDefaultTestBooks()">
-          Select Default Test Books
-        </button>
-      </div>
-      <br />
-      <div *ngIf="testLoaded" class="div-wrapper">
-        <mat-chip-list
-          *ngFor="let book of textsServiceService.testBooks"
-          aria-label="TrainSelection"
-        >
-          <mat-chip color="primary" selected>{{ book.name }}</mat-chip
-          >&nbsp;
-        </mat-chip-list>
-      </div>
-      <div>
-        <button mat-raised-button matStepperPrevious>Back</button>
-        &nbsp;
-        <button mat-raised-button matStepperNext>Next</button>
-      </div>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <div>
-        <button mat-raised-button matStepperPrevious>Back</button>
-        &nbsp;
-        <button mat-raised-button (click)="stepper.reset()">Reset</button>
-        &nbsp;
-        <button mat-raised-button color="primary" (click)="analyzeBegin()">
-          Analyze
-        </button>
-      </div>
-    </mat-step>
-  </mat-horizontal-stepper>
-
-  <div *ngIf="analyzePressed" class="d-flex justify-content-center">
+        <div>
+          <button mat-raised-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <div>
+          <ng-template matStepLabel>Select Books to Test</ng-template>
+          <button mat-raised-button (click)="openSelectTextsDialog('test')">
+            Select Your Test Books
+          </button>
+          &nbsp;
+          <button mat-raised-button (click)="selectDefaultTestBooks()">
+            Select Default Test Books
+          </button>
+        </div>
+        <br />
+        <div *ngIf="testLoaded" class="div-wrapper">
+          <mat-chip-list
+            *ngFor="let book of textsServiceService.testBooks"
+            aria-label="TrainSelection"
+          >
+            <div *ngIf="book.level == 2">
+              <mat-chip color="primary" selected>{{ book.name }}</mat-chip>
+            </div>
+            &nbsp;
+          </mat-chip-list>
+        </div>
+        <div>
+          <button mat-raised-button matStepperPrevious>Back</button>
+          &nbsp;
+          <button mat-raised-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <div>
+          <button mat-raised-button matStepperPrevious>Back</button>
+          &nbsp;
+          <button mat-raised-button (click)="stepper.reset()">Reset</button>
+          &nbsp;
+          <button mat-raised-button color="primary" (click)="analyzeBegin()">
+            Analyze
+          </button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+  <div *ngIf="dataLoaded" class="d-flex justify-content-center">
     <div style="padding-left: 10px">
       <br />
       <span>Trained On:</span>
-      <mat-chip-list
-        *ngFor="let book of textsServiceService.trainBooks"
-        aria-label="TrainSelection"
-      >
-        <mat-chip color="primary" selected>{{ book.name }}</mat-chip
-        >&nbsp;
-      </mat-chip-list>
+      <div>
+        <span>{{ dataService.classLable1 }}</span>
+        <mat-chip-list
+          *ngFor="let book of textsService.clss1TrainBooks"
+          aria-label="TrainSelection"
+        >
+          <mat-chip color="primary" selected>{{ book.name }}</mat-chip
+          >&nbsp;
+        </mat-chip-list>
+      </div>
+      <div>
+        <span>{{ dataService.classLable2 }}</span>
+        <mat-chip-list
+          *ngFor="let book of textsService.clss2TrainBooks"
+          aria-label="TrainSelection"
+        >
+          <mat-chip color="Warn">{{ book.name }}</mat-chip
+          >&nbsp;
+        </mat-chip-list>
+      </div>
     </div>
     <div>
-      <app-result-graph> </app-result-graph>
+      <app-result-graph
+        [graph]="graph"
+        [dataLoaded]="dataLoaded"
+        [testBooks]="textsServiceService.testBooks"
+        [selectedModel]="textsService.selectedModel"
+      >
+      </app-result-graph>
     </div>
     <div class="author">
       <div>
         <span style="font-size: 0.85em"
           ><span class="squre" style="background-color: '#90ee90'"></span
-          ><span style="display: inline"> Same Author </span></span
+          ><span style="display: inline">{{
+            dataService.classLable1
+          }}</span></span
         >
       </div>
       <div>
         <span style="font-size: 0.85em"
           ><span class="squre" style="background-color: rgb(178, 34, 34)"></span
-          ><span style="display: inline"> Different Author </span></span
+          ><span style="display: inline"
+            >{{ dataService.classLable2 }}
+          </span></span
         >
       </div>
     </div>

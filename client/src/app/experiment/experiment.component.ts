@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { SelectTextsDialogComponent } from './select-texts-dialog/select-texts-dialog.component';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import { TextsServiceService } from '../services/texts-service.service';
+import { TextsService } from '../services/texts.service';
+import { DataService } from '../services/data.service';
+import { IGraph } from '../models/IGraph';
 
 @Component({
   selector: 'app-experiment',
@@ -22,10 +24,14 @@ export class ExperimentComponent implements OnInit {
   testFormGroup: FormGroup;
   trainLoaded: boolean;
   testLoaded: boolean;
+  graph: IGraph;
+  dataLoaded: boolean;
   constructor(
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
-    public textsServiceService: TextsServiceService
+    public textsServiceService: TextsService,
+    public textsService: TextsService,
+    public dataService: DataService
   ) {
     this.testLoaded = false;
   }
@@ -58,6 +64,23 @@ export class ExperimentComponent implements OnInit {
 
   analyzeBegin() {
     this.analyzePressed = true;
+
+    let testBooksNames;
+    testBooksNames = this.textsServiceService.testBooks
+      .filter((book) => {
+        return book.level == 2;
+      })
+      .map((book) => book.name);
+    console.log('send Data', testBooksNames, this.textsService.selectedModel);
+
+    this.dataService
+      .getResultDataForGraph(testBooksNames, this.textsService.selectedModel)
+      .subscribe((data) => {
+        console.log('returned data', data);
+
+        this.graph = data;
+        this.dataLoaded = true;
+      });
   }
   selectDefaultTestBooks() {
     this.textsServiceService.testBooks = [
