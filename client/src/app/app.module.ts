@@ -27,6 +27,8 @@ import { TrainModelComponent } from './train-model/train-model.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatRadioModule } from '@angular/material/radio';
+
+import { NgHttpLoaderModule } from 'ng-http-loader';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +44,7 @@ import { MatRadioModule } from '@angular/material/radio';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
@@ -60,6 +63,7 @@ import { MatRadioModule } from '@angular/material/radio';
     MatCardModule,
     MatDividerModule,
     MatRadioModule,
+    NgHttpLoaderModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
