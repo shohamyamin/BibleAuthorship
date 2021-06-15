@@ -1,5 +1,4 @@
-# Web-Project
-Web project
+# Bible Authorship
 
 Server-Client application that able to train a model that capable to tell the authorship of bible books
 
