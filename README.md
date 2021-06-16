@@ -1,6 +1,6 @@
 # Bible Authorship
 
-Server-Client application that able to train a model that capable to tell the authorship of bible books
+Server-Client application that allows training deep neural network models that are capable of predicting the authorship of documents in ancient Hebrew like the Hebrew Bible.
 
 
 ## Getting Started
@@ -11,7 +11,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 - git
 - Node.js
-- python
+- Angular
+- Python 3.7.4
+- Keras 2.4.0
 
 ### Installing
 
@@ -19,7 +21,7 @@ Clone the project
 
 ```
 git clone https://github.com/shohamyamin/BibleAuthorship.git
-cd finalProj
+cd BibleAuthorship
 
 ```
 Install dependencies
