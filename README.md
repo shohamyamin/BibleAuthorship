@@ -1,17 +1,17 @@
-# Web-Project
-Web project
+# Bible Authorship
 
 Server-Client application that able to train a model that capable to tell the authorship of bible books
 
 
 ## Getting Started
 
-These instructions will get you a copy of the client project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
 - git
 - Node.js
+- python
 
 ### Installing
 
@@ -22,21 +22,25 @@ git clone https://github.com/shohamyamin/finalProj.git
 cd finalProj
 
 ```
-
 Install dependencies
 
 ```
 cd client 
 npm install
+cd ..
 ```
 
+```
+cd server 
+pip install -r requirements.txt
+```
 ## Deployment
 
 Run server:
 chang directory into server directory and run
 
 ```
-npm start
+python main.py
 ```
 
 Run client:
