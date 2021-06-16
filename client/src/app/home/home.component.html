@@ -1,4 +1,38 @@
-<div class="my-container">
-  <button mat-button routerLink="/experiment">Start Experiment</button>
-  <button mat-button routerLink="/trainModal">Train Model</button>
+<div
+  class="container"
+  [ngStyle]="{
+    'background-image': getUrl(),
+    height: '100%',
+    'background-repeat': 'no-repeat',
+    'background-attachment': 'fixed',
+    'background-size': 'cover'
+  }"
+>
+  <div class="my-container">
+    <button
+      mat-raised-button
+      routerLink="/experiment"
+      style="
+        height: 100px !important;
+        width: 180px !important;
+        background: linear-gradient(to top left, #3d51b5 0%, #f1eef1 85%);
+        color: rgb(255, 255, 255) !important;
+      "
+    >
+      <mat-icon> bar_chart</mat-icon>Start Experiment
+    </button>
+    &nbsp;&nbsp;
+    <button
+      mat-raised-button
+      routerLink="/trainModal"
+      style="
+        height: 100px !important;
+        width: 180px !important;
+        background: linear-gradient(to top left, #3d51b5 0%, #f1eef1 85%);
+        color: rgb(255, 255, 255) !important;
+      "
+    >
+      <mat-icon>add_circle_outline</mat-icon>Train Model
+    </button>
+  </div>
 </div>

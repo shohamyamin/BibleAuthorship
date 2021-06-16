@@ -15,7 +15,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.val = 'roy';
   }
-
+  getUrl() {
+    return "url('https://free4kwallpapers.com/uploads/wallpaper/white-abstract-4k-wallpapers-1080x1920-wallpaper.jpg')";
+  }
   buttonClicked() {
     this.homeDataService.getHomeData().subscribe((name) => {
       this.val = name;
