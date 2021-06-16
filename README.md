@@ -18,7 +18,7 @@ These instructions will get you a copy of the project up and running on your loc
 Clone the project
 
 ```
-git clone https://github.com/shohamyamin/finalProj.git
+git clone https://github.com/shohamyamin/Bible-Authorship.git
 cd finalProj
 
 ```
